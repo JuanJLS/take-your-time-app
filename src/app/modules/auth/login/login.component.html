@@ -1,0 +1,8 @@
+<form class="login-form" *ngIf="form" [formGroup]="form">
+    <label>Email</label>
+    <input type="email" formControlName="email">
+    <span class="error" *ngIf="form.get('email')?.errors?.['email']">Formato de email no válido</span>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+    <button (click)="login()" [disabled]="!form.valid">Login</button>
+</form>
