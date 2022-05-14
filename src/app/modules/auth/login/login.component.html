@@ -1,8 +1,35 @@
-<form class="login-form" *ngIf="form" [formGroup]="form">
-    <label>Email</label>
-    <input type="email" formControlName="email">
-    <span class="error" *ngIf="form.get('email')?.errors?.['email']">Formato de email no válido</span>
-    <label>Password</label>
-    <input type="password" formControlName="password">
-    <button (click)="login()" [disabled]="!form.valid">Login</button>
-</form>
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+            <div class="row flex-grow">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left p-5">
+                        <div class="brand-logo">
+                            <img src="" alt="APP LOGO HERE">
+                        </div>
+                        <form class="login-form" *ngIf="form" [formGroup]="form">
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-lg" formControlName="email"
+                                    placeholder="Email">
+                            </div>
+                            <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Formato de email no
+                                válido</div>
+                            <div class="form-group">
+                                <input type="password" formControlName="password" class="form-control form-control-lg"
+                                    placeholder="Password">
+                            </div>
+                            <div class="mb-4">
+                                <div class="form-check">
+                                  <label class="form-check-label text-muted">
+                                    <input type="checkbox" class="form-check-input"> I agree to all Terms & Conditions </label>
+                                </div>
+                              </div>
+                            <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
+                                (click)="login()" [disabled]="!form.valid">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

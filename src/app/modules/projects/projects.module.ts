@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { ProjectsComponent } from './projects.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    ProjectsComponent
   ],
   imports: [
     SharedModule,
     RouterModule.forChild([
       {
         path: '',
-        component: HomeComponent
+        component: ProjectsComponent
       }
     ])
   ]
 })
-export class HomeModule { }
+export class ProjectsModule { }

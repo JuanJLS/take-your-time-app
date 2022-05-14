@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   form: FormGroup | undefined;
 
-  constructor( private fb: FormBuilder ) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.initForms();
@@ -25,6 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.form?.get('email')?.value, this.form?.get('password')?.value);
+    this.auth.login(this.form?.get('email')?.value, this.form?.get('password')?.value)
+      .subscribe(
+        response => {
+          this.router.navigateByUrl("/home");
+        },
+        error => {
+          //Use a modal
+          console.error(error)
+        }
+      )
   }
 }
