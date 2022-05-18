@@ -7,12 +7,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { AuthInterceptor } from './modules/auth/interceptor/auth.interceptor';
-import { NavigationComponent } from './components/navigation.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { FooterComponent } from './modules/footer/footer.component';
+import { TopNavComponent } from './modules/topnav/top-nav.component';
+import { SidebarComponent } from './modules/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent
+    NavigationComponent,
+    FooterComponent,
+    TopNavComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

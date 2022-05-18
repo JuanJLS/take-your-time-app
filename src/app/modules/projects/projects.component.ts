@@ -14,13 +14,13 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    
   }
 
   loadData(): void {
     this.projectsService.getProjects().subscribe(
       response => {
         this.projects = response;
-        console.log(this.projects);
       },
       error => {
         console.error(error.message)

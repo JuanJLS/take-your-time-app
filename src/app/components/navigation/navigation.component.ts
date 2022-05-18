@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: []
 })
 export class NavigationComponent {
+  constructor() { };
+
 }
