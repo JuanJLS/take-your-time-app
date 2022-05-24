@@ -30,6 +30,11 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.form?.get('email')?.value, this.form?.get('password')?.value)
       .subscribe(
         response => {
+          console.log(response);
+          const { user } = response;
+          const { firstName, lastName } = user;
+          const userName = firstName + ' ' + lastName;
+          localStorage.setItem('user', userName);
           this.router.navigateByUrl("/home");
         },
         error => {

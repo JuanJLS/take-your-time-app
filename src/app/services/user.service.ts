@@ -12,4 +12,12 @@ export class UsersService {
   getUsers(): Observable<any> {
     return this.http.get('users');
   }
+
+  createUser(body: any): Observable<any> {
+    return this.http.post('users/create', body);
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.http.get('users/current-user');
+  }
 }

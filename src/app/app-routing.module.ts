@@ -9,7 +9,8 @@ const routes: Routes = [
     path: '', component: NavigationComponent, canActivate: [AuthGuard], children: [
       { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
       { path: 'projects', loadChildren: () => import('./modules/projects/projects.module').then(m => m.ProjectsModule) },
-      { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) }
+      { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
+      { path: 'users/create', loadChildren: () => import('./modules/user-create/user-create.module').then(m => m.UserCreateModule) }
     ]
   },
   { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },

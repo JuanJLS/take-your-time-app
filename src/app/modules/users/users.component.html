@@ -3,8 +3,11 @@
         <div class="col-md-12">
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
+                    <button class="btn btn-block btn-lg btn-gradient-primary mt-12" routerLink="/users/create">Add User</button>
                     <div class="card-body" *ngIf="users">
-                        <h4 class="card-title">Site Projects</h4>
+                        <div class="col-lg-6">
+                            <h4 class="card-title">Site Users</h4>
+                        </div>
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
