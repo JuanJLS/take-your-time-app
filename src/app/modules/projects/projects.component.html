@@ -1,0 +1,35 @@
+<div class="content-wrapper">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body" *ngIf="projects">
+                        <h4 class="card-title">Site Projects</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Project Name</th>
+                                        <th>Creation Date</th>
+                                        <th>Tasks' Name</th>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let project of projects">
+                                        <td>{{project.name}}</td>
+                                        <td>{{project.createdAt | date}}</td>
+                                        <td>
+                                            <p *ngFor="let task of project.Tasks">{{task.name}}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
