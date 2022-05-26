@@ -23,6 +23,7 @@ export class ProjectCreateComponent implements OnInit {
       name: ['', [Validators.required]]
     });
   }
+  
   async createNewProject() {
     const body = {
       name: this.form?.get('name')?.value,

@@ -14,7 +14,6 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    
   }
 
   loadData(): void {
