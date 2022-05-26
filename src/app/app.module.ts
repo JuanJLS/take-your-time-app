@@ -11,6 +11,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { FooterComponent } from './modules/footer/footer.component';
 import { TopNavComponent } from './modules/topnav/top-nav.component';
 import { SidebarComponent } from './modules/sidebar/sidebar.component';
+import { ProjectCreateComponent } from './modules/project-create/project-create.component';
+import { TaskCreateComponent } from './modules/task-create/task-create.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { SidebarComponent } from './modules/sidebar/sidebar.component';
     NavigationComponent,
     FooterComponent,
     TopNavComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

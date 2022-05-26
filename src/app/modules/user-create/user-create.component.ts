@@ -37,15 +37,12 @@ export class UserCreateComponent implements OnInit {
       email: this.form?.get('email')?.value,
       password: this.form?.get('password')?.value
     };
-    console.log('Creating new user Result: ' + body.firstName, body.lastName, body.admin, body.email, body.password);
     //Hay que suscribirse para que funcione.
     this.userService.createUser(body).subscribe(
       //lógica de lo que se quiere hacer cuando ha ido bien la creación. 
       response =>  this.router.navigateByUrl('/users') ,
       error => alert('Error while creating the user') 
     );
-
-    // console.log('Creating new user Response: ' + JSON.stringify(response));
   }
 
 }
