@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -12,26 +11,27 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TaskCreateComponent implements OnInit {
   form: FormGroup | undefined;
-  projects = null;
+  projects: any | null;
 
   constructor(private fb: FormBuilder, private taskService: TaskService, private router: Router, private projectService: ProjectsService) { }
 
   ngOnInit(): void {
     this.initForms();
+    this.getProjects();
   }
 
   initForms(): void {
     if (this.form) { return; }
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      projectId: ['', [Validators.required]]
+      project: [, [Validators.required]]
     });
   }
 
   async createNewTask() {
     const body = {
       name: this.form?.get('name')?.value,
-      projectId: this.form?.get('projectId')?.value,
+      projectId: this.form?.get('project')?.value.id,
     };
 
     this.taskService.createTask(body).subscribe(

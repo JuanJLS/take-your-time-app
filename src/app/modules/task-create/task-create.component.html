@@ -9,8 +9,9 @@
                         placeholder="Task Name">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control form-control-lg" formControlName="projectId"
-                        placeholder="Project Id">
+                    <select class="form-control" formControlName="project">
+                        <option *ngFor="let project of projects" [ngValue]="project">{{project.name}}</option>
+                    </select>
                 </div>
                 <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
                     (click)="createNewTask()" [disabled]="!form.valid">Add New Task</button>
