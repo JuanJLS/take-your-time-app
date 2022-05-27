@@ -23,15 +23,15 @@
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                 aria-controls="ui-basic">
-                <span class="menu-title">Components</span>
+                <span class="menu-title">Projects</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" routerLink="projects">Projects</a>
+                    <li class="nav-item"> <a class="nav-link" routerLink="projects">All Projects</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link">User Component</a></li>
+                    <li class="nav-item"> <a class="nav-link" routerLink="tasks/create">Create a Task</a></li>
                 </ul>
             </div>
         </li>
@@ -41,13 +41,21 @@
                 <i class="mdi mdi-contacts menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item sidebar-actions" *ngIf="userIsAdmin">
+            <span class="nav-link">
+                <div>
+                    <button class="btn btn-block btn-lg btn-gradient-primary mt-4" routerLink="projects/create">Add
+                        Project</button>
+                </div>
+                <div class="mt-4">
+                </div>
+            </span>
+        </li>
         <li class="nav-item sidebar-actions">
             <span class="nav-link">
-                <a class="nav-link" routerLink="projects">
-                    <h6 class="font-weight-normal mb-3">Projects</h6>
-                </a>
-                <div *ngIf="userIsAdmin" class="border-bottom">
-                    <button class="btn btn-block btn-lg btn-gradient-primary mt-4" routerLink="projects/create">+ Add a project</button>
+                <div>
+                    <button class="btn btn-block btn-lg btn-gradient-info mt-4" routerLink="users/create">Create
+                        User</button>
                 </div>
                 <div class="mt-4">
                 </div>

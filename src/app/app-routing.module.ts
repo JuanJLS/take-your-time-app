@@ -12,7 +12,8 @@ const routes: Routes = [
       { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
       { path: 'users/create', loadChildren: () => import('./modules/user-create/user-create.module').then(m => m.UserCreateModule) },
       { path: 'projects/create', loadChildren: () => import('./modules/project-create/project-create.module').then(m => m.ProjectCreateModule) },
-      { path: 'tasks/create', loadChildren: () => import('./modules/task-create/task-create.module').then(m => m.TaskCreateModule) }
+      { path: 'tasks/create', loadChildren: () => import('./modules/task-create/task-create.module').then(m => m.TaskCreateModule) },
+      { path: 'worktime/create', loadChildren: () => import('./modules/worktime-create/worktime-create.module').then(m => m.WorktimeCreateModule) }
     ]
   },
   { path: 'login', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
