@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas top-margin" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
@@ -8,7 +8,7 @@
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">David Grey. H</span>
+                    <span class="font-weight-bold mb-2">{{userName}}</span>
                     <span class="text-secondary text-small">Project Manager</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -25,7 +25,7 @@
                 aria-controls="ui-basic">
                 <span class="menu-title">Projects</span>
                 <i class="menu-arrow"></i>
-                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                <i class="mdi mdi-folder-multiple-image menu-icon"></i>
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
@@ -38,7 +38,7 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="users">
                 <span class="menu-title">Users</span>
-                <i class="mdi mdi-contacts menu-icon"></i>
+                <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
         </li>
         <li class="nav-item sidebar-actions" *ngIf="userIsAdmin">
@@ -47,17 +47,11 @@
                     <button class="btn btn-block btn-lg btn-gradient-primary mt-4" routerLink="projects/create">Add
                         Project</button>
                 </div>
-                <div class="mt-4">
-                </div>
             </span>
-        </li>
-        <li class="nav-item sidebar-actions">
-            <span class="nav-link">
+            <span>
                 <div>
                     <button class="btn btn-block btn-lg btn-gradient-info mt-4" routerLink="users/create">Create
                         User</button>
-                </div>
-                <div class="mt-4">
                 </div>
             </span>
         </li>

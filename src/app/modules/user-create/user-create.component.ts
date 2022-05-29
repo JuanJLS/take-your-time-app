@@ -10,6 +10,7 @@ import { UsersService } from 'src/app/services/user.service';
 })
 export class UserCreateComponent implements OnInit {
   form: FormGroup | undefined;
+  showPassword: boolean | undefined;
 
   constructor(private userService: UsersService, private fb: FormBuilder, private router: Router) {
   }
@@ -27,6 +28,10 @@ export class UserCreateComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  toggleShow() {
+    this.showPassword = !this.showPassword;
   }
 
   async createNewUser() {

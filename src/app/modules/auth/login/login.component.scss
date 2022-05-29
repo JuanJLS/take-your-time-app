@@ -1,3 +1,20 @@
 .error {
     color: red;
+    font-size: 0.8rem;
+    font-family: "ubuntu-regular", sans-serif;
 }
+
+.show-password-label {
+    margin-right: 15px;
+    margin-bottom: 25px;
+    font-size: 0.8rem;
+    font-family: "ubuntu-regular", sans-serif;
+    font-weight: initial;
+    line-height: normal;
+}
+
+input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+}
+

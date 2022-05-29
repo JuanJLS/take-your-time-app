@@ -1,30 +1,26 @@
-<div class="content-wrapper top-margin">
-    <div class="page-header">
-        <div class="col-md-12">
-            <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                    <button class="btn btn-block btn-lg btn-gradient-primary mt-12" routerLink="/users/create">Add User</button>
-                    <div class="card-body" *ngIf="users">
-                        <div class="col-lg-6">
-                            <h4 class="card-title">Site Users</h4>
-                        </div>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="cabecera">Project Name</th>
-                                    <th class="cabecera">E-Mail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let user of users">
-                                    <td>{{user.firstName}}</td>
-                                    <td>{{user.email}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<div class="col-md-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body" *ngIf="users">
+            <div class="col-lg-6">
+                <h4 class="card-title">Users' Information</h4>
             </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th class="cabecera">Project Name</th>
+                        <th class="cabecera">E-Mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
+<div class="col-md-4">
+    <button class="btn btn-block btn-lg btn-gradient-primary mt-12" routerLink="/users/create">Add User</button>
 </div>

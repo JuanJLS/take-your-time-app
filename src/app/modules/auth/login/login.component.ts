@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup | undefined;
+  showPassword: boolean = false;
+  passwordAreEquals: boolean = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
     if (this.form) { return; }
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
     console.log(this.form);
   }
@@ -42,5 +45,17 @@ export class LoginComponent implements OnInit {
           console.error(error)
         }
       )
+  }
+
+  toggleShow() {
+    this.showPassword = !this.showPassword;
+  }
+
+  passwordsAreEquals(password: any, confirmPassword: any): boolean {
+    if (password === confirmPassword) {
+      this.passwordAreEquals = true;
+      return true;
+    }
+    return false;
   }
 }

@@ -7,13 +7,19 @@ import { UsersService } from 'src/app/services/user.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  user: any;
+  userName: any;
   userIsAdmin: boolean = false;
-
-  constructor( private userService: UsersService) { }
-
+  
+  constructor( private userService: UsersService) {}
+  
   ngOnInit(): void {
+
     this.userService.getCurrentUser().subscribe(response => 
-      this.userIsAdmin = response.admin)
+      this.userIsAdmin = response.admin);
+    this.userService.getCurrentUser().subscribe(response => 
+      this.userName = response.firstName);
   }
+
+
+
 }
