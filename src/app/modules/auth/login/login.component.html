@@ -9,23 +9,30 @@
                         </div>
                         <form class="login-form" *ngIf="form" [formGroup]="form">
                             <div class="form-group">
+                                <label for="email">Email</label>
                                 <input type="email" class="form-control form-control-lg" formControlName="email"
                                     placeholder="Email">
                             </div>
-                            <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Formato de email no
-                                válido</div>
+                            <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Email format not valid</div>
                             <div class="form-group">
-                                <input type="password" formControlName="password" class="form-control form-control-lg"
-                                    placeholder="Password">
+                                <label for="password">Password</label>
+                                <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                                    class="form-control form-control-lg" placeholder="Password">
                             </div>
-                            <div class="mb-4">
-                                <div class="form-check">
-                                  <label class="form-check-label text-muted">
-                                    <input type="checkbox" class="form-check-input"> I agree to all Terms & Conditions </label>
-                                </div>
-                              </div>
+                            <div class="error form-group" *ngIf="form.get('password')?.errors?.['password']">Please, insert a valid password</div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-lg"
+                                    id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+                            </div>
+                            <div class="error form-group" *ngIf="!passwordsAreEquals(form.get('password')?.value, form.get('confirmPassword')?.value)">Passwords
+                                do not match</div>
+                            <div>
+                                <label class="show-password-label" for="showPassword">Show Passwords</label>
+                                <input type="checkbox" (input)="toggleShow()">
+                            </div>
                             <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-                                (click)="login()" [disabled]="!form.valid">Login</button>
+                                (click)="login()" [disabled]="!form.valid && !form.get('confirmPassword')?.hasError('confirmPassword')">Login</button>
                         </form>
                     </div>
                 </div>

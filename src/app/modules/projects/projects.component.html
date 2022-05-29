@@ -1,35 +1,37 @@
-<div class="content-wrapper top-margin">
-    <div class="page-header">
-        <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body" *ngIf="projects">
-                        <h4 class="card-title">Site Projects</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Project Name</th>
-                                        <th>Project Creation Date</th>
-                                        <th>Project's Tasks</th>
-                                    </tr>
-                                    <tr>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let project of projects">
-                                        <td>{{project.name}}</td>
-                                        <td>{{project.createdAt | date}}</td>
-                                        <td>
-                                            <p *ngFor="let task of project.Tasks">{{task.name}}</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body" *ngIf="projects">
+            <h4 class="card-title">All Projects Information</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Project Name</th>
+                            <th>Project Creation Date</th>
+                            <th>Project's Tasks</th>
+                            <th>Total Hours</th>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Change to go to the clicked project's information -->
+                        <tr class="project-link" *ngFor="let project of projects" [routerLink]="['/tasks/create']">
+                            <td>{{project.name}}</td>
+                            <td>{{project.createdAt | date}}</td>
+                            <td>
+                                <p *ngFor="let task of project.Tasks">{{task.name}}</p>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
+<div class="col-md-6 space-between">
+    <button class="btn btn-block btn-lg btn-gradient-primary mt-4" routerLink="create">Add
+        Project</button>
+    <button class="btn btn-block btn-lg btn-gradient-success mt-4" routerLink="/tasks/create">Create Task</button>
 </div>
