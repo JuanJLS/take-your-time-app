@@ -1,8 +1,8 @@
 <div class="col-md-10 grid-margin stretch-card">
     <div class="card">
-        <div class="card-body" *ngIf="users">
+        <div class="card-body" *ngIf="user">
             <div class="col-lg-6">
-                <h4 class="card-title">Users' Information</h4>
+                <h4 class="card-title">User Information</h4>
             </div>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -13,16 +13,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users" (click)="navigateToUser(user.id)">
+                    <tr *ngIf="user">
                         <td>{{user.firstName}}</td>
                         <td>{{user.email}}</td>
-                        <!-- <td><button (click)="getUser(user.id)" class="btn btn-primary">More Info.</button></td> -->
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<div class="col-md-4">
-    <button class="btn btn-block btn-lg btn-gradient-primary mt-12" routerLink="/users/create">Add User</button>
+<div class="col-md-12">
+    <div class="col-md-4 tyt-buttons">
+        <button class="btn btn-block btn-lg btn-success mt-6" routerLink="/users/create">Modify User</button>
+        <button class="btn btn-block btn-lg btn-danger mt-6" routerLink="/users/create">Delete User</button>
+    </div>
 </div>

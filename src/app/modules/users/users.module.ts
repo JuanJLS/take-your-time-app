@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     SharedModule,
@@ -15,6 +17,10 @@ import { UsersComponent } from './users.component';
       {
         path: '',
         component: UsersComponent
+      },
+      {
+        path: ':id',
+        component: UserComponent
       }
     ])
   ]

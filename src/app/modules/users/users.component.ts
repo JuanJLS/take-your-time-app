@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class UsersComponent implements OnInit {
 
   users = null;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -25,5 +26,10 @@ export class UsersComponent implements OnInit {
         console.error(error.message)
       }
     );
+  }
+
+  navigateToUser(userId: string): void {
+    console.log(userId)
+    this.router.navigateByUrl(`/users/${userId}`);
   }
 }

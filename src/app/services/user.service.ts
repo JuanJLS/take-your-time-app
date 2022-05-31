@@ -13,6 +13,10 @@ export class UsersService {
     return this.http.get('users');
   }
 
+  getUser(id: string): Observable<any> {
+    return this.http.get(`users/${id}`);
+  }
+
   createUser(body: any): Observable<any> {
     return this.http.post('users/create', body);
   }
@@ -20,4 +24,5 @@ export class UsersService {
   getCurrentUser(): Observable<any> {
     return this.http.get('users/current-user');
   }
+
 }
