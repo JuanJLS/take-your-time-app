@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/services/projects.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-projects',
@@ -10,7 +11,7 @@ export class ProjectsComponent implements OnInit {
 
   projects = null;
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(private projectsService: ProjectsService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -26,4 +27,9 @@ export class ProjectsComponent implements OnInit {
       }
     );
   }
+
+  navigateToProject(projectId: string): void {
+    this.router.navigateByUrl(`/projects/${projectId}`);
+  }
+
 }

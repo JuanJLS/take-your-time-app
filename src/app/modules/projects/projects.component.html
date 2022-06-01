@@ -16,7 +16,7 @@
                     </thead>
                     <tbody>
                         <!-- Change to go to the clicked project's information -->
-                        <tr class="project-link" *ngFor="let project of projects" [routerLink]="['/tasks/create']">
+                        <tr class="project-link" *ngFor="let project of projects" (click)="navigateToProject(project.id)">
                             <td>{{project.name}}</td>
                             <td>{{project.createdAt | date}}</td>
                             <td>

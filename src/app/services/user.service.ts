@@ -24,5 +24,4 @@ export class UsersService {
   getCurrentUser(): Observable<any> {
     return this.http.get('users/current-user');
   }
-
 }

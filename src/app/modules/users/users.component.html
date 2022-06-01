@@ -9,14 +9,12 @@
                     <tr class="table-primary">
                         <th class="cabecera">User Name</th>
                         <th class="cabecera">User E-Mail</th>
-                        <th class="cabecera"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users" (click)="navigateToUser(user.id)">
+                    <tr class="navigate-to-user" *ngFor="let user of users" (click)="navigateToUser(user.id)">
                         <td>{{user.firstName}}</td>
                         <td>{{user.email}}</td>
-                        <!-- <td><button (click)="getUser(user.id)" class="btn btn-primary">More Info.</button></td> -->
                     </tr>
                 </tbody>
             </table>

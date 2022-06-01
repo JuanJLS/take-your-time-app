@@ -11,6 +11,7 @@ import { UsersService } from 'src/app/services/user.service';
 export class UserCreateComponent implements OnInit {
   form: FormGroup | undefined;
   showPassword: boolean | undefined;
+  passwordAreEquals: boolean = false;
 
   constructor(private userService: UsersService, private fb: FormBuilder, private router: Router) {
   }
@@ -26,7 +27,8 @@ export class UserCreateComponent implements OnInit {
       lastName: ['', [Validators.required]],
       admin: [false, [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -42,12 +44,17 @@ export class UserCreateComponent implements OnInit {
       email: this.form?.get('email')?.value,
       password: this.form?.get('password')?.value
     };
-    //Hay que suscribirse para que funcione.
+    
     this.userService.createUser(body).subscribe(
-      //lógica de lo que se quiere hacer cuando ha ido bien la creación. 
       response =>  this.router.navigateByUrl('/users') ,
       error => alert('Error while creating the user') 
     );
   }
-
+  passwordsAreEquals(password: any, confirmPassword: any): boolean {
+    if (password === confirmPassword) {
+      this.passwordAreEquals = true;
+      return true;
+    }
+    return false;
+  }
 }

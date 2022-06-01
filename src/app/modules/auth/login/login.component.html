@@ -20,19 +20,12 @@
                                     class="form-control form-control-lg" placeholder="Password">
                             </div>
                             <div class="error form-group" *ngIf="form.get('password')?.errors?.['password']">Please, insert a valid password</div>
-                            <div class="form-group">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-lg"
-                                    id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
-                            </div>
-                            <div class="error form-group" *ngIf="!passwordsAreEquals(form.get('password')?.value, form.get('confirmPassword')?.value)">Passwords
-                                do not match</div>
                             <div>
                                 <label class="show-password-label" for="showPassword">Show Passwords</label>
                                 <input type="checkbox" (input)="toggleShow()">
                             </div>
                             <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-                                (click)="login()" [disabled]="!form.valid && !form.get('confirmPassword')?.hasError('confirmPassword')">Login</button>
+                                (click)="login()" [disabled]="!form.valid">Login</button>
                         </form>
                     </div>
                 </div>

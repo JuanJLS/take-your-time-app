@@ -14448,3 +14448,14 @@ dl {
   flex-grow: 1; }
 
 /*# sourceMappingURL=style.css.map */
+
+/* General Styles added by JJLS*/
+.tyt-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.navigate-to-user {
+  cursor: pointer;
+}

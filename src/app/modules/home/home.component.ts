@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from 'src/app/services/projects.service';
+import { TaskService } from 'src/app/services/task.service';
+import { UsersService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  
+  projects: any;
+  
+  constructor(private projectsService: ProjectsService, private tasksService: TaskService, private userService: UsersService) { }
 
   ngOnInit(): void {}
+
 }

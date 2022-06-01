@@ -9,10 +9,10 @@ const routes: Routes = [
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard], children: [
       { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
-      { path: 'projects', loadChildren: () => import('./modules/projects/projects.module').then(m => m.ProjectsModule) },
-      { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
       { path: 'users/create', loadChildren: () => import('./modules/user-create/user-create.module').then(m => m.UserCreateModule) },
       { path: 'projects/create', loadChildren: () => import('./modules/project-create/project-create.module').then(m => m.ProjectCreateModule) },
+      { path: 'projects', loadChildren: () => import('./modules/projects/projects.module').then(m => m.ProjectsModule) },
+      { path: 'users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
       { path: 'tasks/create', loadChildren: () => import('./modules/task-create/task-create.module').then(m => m.TaskCreateModule) },
       { path: 'worktime/create', loadChildren: () => import('./modules/worktime-create/worktime-create.module').then(m => m.WorktimeCreateModule) }
     ]
