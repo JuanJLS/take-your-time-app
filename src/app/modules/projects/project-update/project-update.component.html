@@ -6,7 +6,9 @@
             <form class="login-form">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-lg" formControlName="name"
-                        [value]="this.form?.value.name">
+                        [value]="this.form?.value.name"
+                        (input)="onUpdateProjectName($event)"
+                        >
                 </div>
                 <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
                     (click)="updateProject()" [disabled]="!projectName">Modify</button>

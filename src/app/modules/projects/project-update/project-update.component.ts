@@ -13,12 +13,13 @@ export class ProjectUpdateComponent implements OnInit {
     projectId: string = '';
     @Input() projectName: string = '';
     form: FormGroup | undefined;
+    updatedProjectName: string ='';
 
 
     constructor(private projectService: ProjectsService, private route: ActivatedRoute, private fb: FormBuilder) { }
 
     updateProject() {
-        this.projectService.updateProject({'id': this.projectId,'name': this.form?.value.name}).subscribe(response => {
+        this.projectService.updateProject({'id': this.projectId,'name': this.updatedProjectName}).subscribe(response => {
             console.log('name', this.form?.value.name)
             if(response) {
                 alert('Project updated successfuly')
@@ -45,6 +46,10 @@ export class ProjectUpdateComponent implements OnInit {
         })
 
         this.initForms()
+    }
+
+    onUpdateProjectName(event: Event){
+        this.updatedProjectName = (<HTMLInputElement>event.target).value;
     }
 
    
