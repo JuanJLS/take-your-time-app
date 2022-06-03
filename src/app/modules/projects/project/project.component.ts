@@ -32,7 +32,16 @@ export class ProjectComponent implements OnInit {
     }
 
     navigateToUpdateProject(projectId: string, projectName: string): void {
-        console.log(projectName)
-        this.router.navigate([`/projects/update/${projectId}`], {queryParams: {name: projectName}});
-      }
+        this.router.navigate([`/projects/update/${projectId}`], { queryParams: { name: projectName } });
+    }
+
+    deleteProject(projectId: number) {
+        this.projectService.deleteProject(projectId).subscribe(response => {
+            if (response) {
+                alert('Project deleted successfuly')
+            }
+        },
+            error => alert('Imposible to delete the Project')
+        )
+    }
 }

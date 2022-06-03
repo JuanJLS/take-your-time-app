@@ -17,7 +17,6 @@ export class TaskService {
   createTask(body: any): Observable<any> {
     return this.http.post('tasks/create', body);
   }
-  //It receive a lists of ids, and renturn the related task's information
   async findTaskById(taskId: string) {
     return await this.http.get(`tasks/${taskId}`).toPromise();
   }

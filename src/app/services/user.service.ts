@@ -24,4 +24,16 @@ export class UsersService {
   getCurrentUser(): Observable<any> {
     return this.http.get('users/current-user');
   }
+
+  updateUser(params: any): Observable<any> {
+    const id = params.id;
+    const body: any = {};
+    if (params) {
+      body.firstName = params.firstName;
+      body.lastName = params.lastName;
+      body.admin = params.admin;
+      body.email = params.email;
+    }
+    return this.http.patch(`users/${id}`, body);
+  }
 }

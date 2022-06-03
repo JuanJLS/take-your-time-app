@@ -14452,8 +14452,13 @@ dl {
 /* General Styles added by JJLS*/
 .tyt-buttons {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.tyt-buttons button {
+  margin-bottom: 25px;
 }
 
 .navigate-to-user {

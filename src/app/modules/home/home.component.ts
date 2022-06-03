@@ -11,9 +11,24 @@ import { UsersService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
   
   projects: any;
+  tasks: any;
   
   constructor(private projectsService: ProjectsService, private tasksService: TaskService, private userService: UsersService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProjects();
+    this.getTasks();
+  }
+
+  getProjects() {
+    this.projectsService.getProjects().subscribe(response =>{
+      this.projects = response ;
+    })
+  }
+  getTasks() {
+    this.tasksService.getTasks().subscribe(response =>{
+      this.tasks = response ;
+    })
+  }
 
 }

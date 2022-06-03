@@ -25,7 +25,7 @@
 </div>
 <div class="col-md-12">
     <div class="col-md-6 tyt-buttons">
-        <button class="btn btn-block btn-lg btn-success mt-6" (click)="navigateToUpdateProject(project.id, project.name)" [routerLink]="['/projects/create']">Modify Project</button>
-        <button class="btn btn-block btn-lg btn-danger mt-6" routerLink="/projects">Delete Project</button>
+        <button class="btn btn-block btn-lg btn-success mt-6" (click)="navigateToUpdateProject(project.id, project.name)">Modify Project</button>
+        <button class="btn btn-block btn-lg btn-danger mt-6" (click)="deleteProject(project.id)">Delete Project</button>
     </div>
 </div>

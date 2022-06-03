@@ -10,7 +10,8 @@ import { ProjectsComponent } from './projects.component';
 @NgModule({
   declarations: [
     ProjectsComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectUpdateComponent
   ],
   imports: [
     SharedModule,

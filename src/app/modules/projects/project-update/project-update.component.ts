@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ProjectsService } from "src/app/services/projects.service";
 
 @Component({
@@ -11,30 +11,22 @@ import { ProjectsService } from "src/app/services/projects.service";
 
 export class ProjectUpdateComponent implements OnInit {
     projectId: string = '';
-    @Input() projectName: string = '';
+    projectName: string = '';
     form: FormGroup | undefined;
-    updatedProjectName: string ='';
+    updatedProjectName: string = '';
 
 
-    constructor(private projectService: ProjectsService, private route: ActivatedRoute, private fb: FormBuilder) { }
+    constructor(private projectService: ProjectsService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
 
-    updateProject() {
-        this.projectService.updateProject({'id': this.projectId,'name': this.updatedProjectName}).subscribe(response => {
-            console.log('name', this.form?.value.name)
-            if(response) {
-                alert('Project updated successfuly')
-            }
-        },
-            error => alert('Error while retrieving the project')
-        )
-    }
 
     initForms(): void {
+        console.log('Iniciando')
         if (this.form) { return; }
         this.form = this.fb.group({
-          name: [this.projectName, [Validators.required]]
+            name: [this.projectName, [Validators.required]]
         });
-      }
+
+    }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -43,14 +35,16 @@ export class ProjectUpdateComponent implements OnInit {
 
         this.route.queryParams.subscribe(params => {
             this.projectName = params['name'];
+            this.initForms()
         })
-
-        this.initForms()
     }
 
-    onUpdateProjectName(event: Event){
-        this.updatedProjectName = (<HTMLInputElement>event.target).value;
+    updateProject() {
+        this.projectService.updateProject({ 'id': this.projectId, 'name': this.form?.get('name')?.value }).subscribe(response => {
+            console.log(response);
+            this.router.navigateByUrl('/projects')
+        },
+            error => alert('Error while creating the Task')
+        );
     }
-
-   
 }

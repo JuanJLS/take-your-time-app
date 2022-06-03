@@ -3,15 +3,13 @@
         <div class="card-body">
             <h4 class="card-title">Modify Project</h4>
 
-            <form class="login-form">
+            <form class="login-form" *ngIf="form" [formGroup]="form">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-lg" formControlName="name"
-                        [value]="this.form?.value.name"
-                        (input)="onUpdateProjectName($event)"
                         >
                 </div>
                 <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-                    (click)="updateProject()" [disabled]="!projectName">Modify</button>
+                    (click)="updateProject()" [disabled]="!projectName" >Modify</button>
             </form>
         </div>
     </div>

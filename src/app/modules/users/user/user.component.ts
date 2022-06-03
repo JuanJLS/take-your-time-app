@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { TaskService } from "src/app/services/task.service";
 import { UsersService } from "src/app/services/user.service";
 
@@ -11,12 +11,10 @@ import { UsersService } from "src/app/services/user.service";
 export class UserComponent implements OnInit {
     userId: string = '';
     user: any;
-    tasksByUser: any;
 
-    constructor(private usersService: UsersService, private route: ActivatedRoute, private tasksService: TaskService) { }
+    constructor(private usersService: UsersService, private route: ActivatedRoute, private tasksService: TaskService, private router: Router) { }
 
     getUser() {
-        type Task = {createdAt: string; id: number; name: string; projectId: number; updatedAt: string;};
         this.usersService.getUser(this.userId).subscribe(response => {
             this.user = response;
             this.user.WorkTimes.map((worktime: any) => {
@@ -37,19 +35,12 @@ export class UserComponent implements OnInit {
         })
     }
 
-    filterTaskById(taskId: any) {
-        // let returnedInfo;
-        this.tasksService.findTaskById(taskId).then(response => {
-            return response;
-        },
-            error => alert(error.message)
-        )
-
-        // return returnedInfo;
-    }
-
     calculateWorktime(totalTime: number): string {
         const calculatedTime = totalTime * 100 / 160;
         return `width: ${calculatedTime}%`;
+    }
+
+    navigateToUpdateUser(userId: string, firstName: string, lastName: string, admin: boolean, email: string) {
+        this.router.navigate([`/users/update/${userId}`], {queryParams: {firstName: firstName, lastName: lastName, admin: admin, email: email }});
     }
 }  
