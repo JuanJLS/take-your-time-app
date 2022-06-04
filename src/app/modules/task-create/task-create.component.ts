@@ -24,7 +24,8 @@ export class TaskCreateComponent implements OnInit {
     if (this.form) { return; }
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      project: [, [Validators.required]]
+      project: [, [Validators.required]],
+      status: ['', [Validators.required]]
     });
   }
 
@@ -32,6 +33,7 @@ export class TaskCreateComponent implements OnInit {
     const body = {
       name: this.form?.get('name')?.value,
       projectId: this.form?.get('project')?.value.id,
+      status: this.form?.get('status')?.value
     };
 
     this.taskService.createTask(body).subscribe(

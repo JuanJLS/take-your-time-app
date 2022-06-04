@@ -1,31 +1,39 @@
 <div class="col-md-10 grid-margin stretch-card">
     <div class="card">
         <div class="card-body" *ngIf="project">
-            <div class="col-lg-6">
-                <h4 class="card-title">Project Information</h4>
+            <h4 class="card-title">Project Information</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-primary">
+                            <th class="cabecera">Project Name</th>
+                            <th class="cabecera">Project Creation Date</th>
+                            <th class="cabecera">Tasks linked to the project</th>
+                            <th class="cabecera">Tasks' Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="project">
+                            <td>{{project.name}}</td>
+                            <td>{{project.createdAt | date }}</td>
+                            <td>
+                                <p *ngFor="let task of project.Tasks">{{task.name}}</p>
+                            </td>
+                            <td>
+                                <p *ngFor="let task of project.Tasks">{{task.status}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="table-primary">
-                        <th class="cabecera">Project Name</th>
-                        <th class="cabecera">Project Creation Date</th>
-                        <th class="cabecera">Tasks linked to the project</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngIf="project">
-                        <td>{{project.name}}</td>
-                        <td>{{project.createdAt | date }}</td>
-                        <p *ngFor="let task of project.Tasks">{{task.name}}</p>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
 <div class="col-md-12">
     <div class="col-md-6 tyt-buttons">
-        <button class="btn btn-block btn-lg btn-success mt-6" (click)="navigateToUpdateProject(project.id, project.name)">Modify Project</button>
-        <button class="btn btn-block btn-lg btn-danger mt-6" (click)="deleteProject(project.id)">Delete Project</button>
+        <button class="btn btn-block btn-lg btn-success mt-6"
+            (click)="navigateToUpdateProject(project.id, project.name)">Modify Project</button>
+        <button *ngIf=" project && project.Tasks =='' " class="btn btn-block btn-lg btn-danger mt-6"
+            (click)="deleteProject(project.id)">Delete Project</button>
     </div>
 </div>

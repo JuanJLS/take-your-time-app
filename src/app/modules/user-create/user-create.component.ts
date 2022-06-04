@@ -12,6 +12,7 @@ export class UserCreateComponent implements OnInit {
   form: FormGroup | undefined;
   showPassword: boolean | undefined;
   passwordAreEquals: boolean = false;
+  userCreated: boolean = false;
 
   constructor(private userService: UsersService, private fb: FormBuilder, private router: Router) {
   }
@@ -44,10 +45,15 @@ export class UserCreateComponent implements OnInit {
       email: this.form?.get('email')?.value,
       password: this.form?.get('password')?.value
     };
-    
+
     this.userService.createUser(body).subscribe(
-      response =>  this.router.navigateByUrl('/users') ,
-      error => alert('Error while creating the user') 
+      response => {
+          this.userCreated = true;
+          setTimeout(
+            () => this.createAndNavigate(), 2000,
+          )
+      },
+      error => alert('Error while creating the user')
     );
   }
   passwordsAreEquals(password: any, confirmPassword: any): boolean {
@@ -56,5 +62,11 @@ export class UserCreateComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  createAndNavigate() {
+    this.userCreated = false;
+    this.router.navigateByUrl('/users')
+
   }
 }

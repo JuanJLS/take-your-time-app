@@ -11,7 +11,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<any> {
-    return this.http.get('task');
+    return this.http.get('tasks');
   }
 
   createTask(body: any): Observable<any> {
@@ -20,4 +20,6 @@ export class TaskService {
   async findTaskById(taskId: string) {
     return await this.http.get(`tasks/${taskId}`).toPromise();
   }
+
+  
 }

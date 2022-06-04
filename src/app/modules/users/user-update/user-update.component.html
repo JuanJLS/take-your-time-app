@@ -1,3 +1,6 @@
+<div *ngIf="userUpdated" class="alert alert-primary col-md-6" role="alert">
+  User Updated Successfully!
+</div>
 <div class="col-md-6 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -15,10 +18,11 @@
         <div class="error form-group" *ngIf="form.get('lastName')?.errors?.['lastName']">Family name format is not
           correct</div>
         <div class="form-group">
-          <label for="admin">User is Admin?</label>
+          <label class="tyt-checkbox-label" for="admin">Is Admin?</label>
           <input type="checkbox" 
           formControlName="admin"
-          [checked]="form.get('admin')?.value"
+          [checked]=""
+          class="tyt-checkbox"
           >
         </div>
         <div class="form-group">
@@ -27,7 +31,7 @@
         <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Email format not valid</div>
 
         <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-          (click)="updateUser()" [disabled]="!form.valid">Create New User</button>
+          (click)="updateUser()" [disabled]="!form.valid">Modify User</button>
       </form>
     </div>
   </div>

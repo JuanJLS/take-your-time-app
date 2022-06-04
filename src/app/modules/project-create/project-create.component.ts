@@ -10,6 +10,7 @@ import { ProjectsService } from 'src/app/services/projects.service';
 })
 export class ProjectCreateComponent implements OnInit {
   form: FormGroup | undefined;
+  projectCreated: boolean = false;
 
   constructor(private fb: FormBuilder, private projectsService: ProjectsService, private router: Router) { }
 
@@ -23,16 +24,23 @@ export class ProjectCreateComponent implements OnInit {
       name: ['', [Validators.required]]
     });
   }
-  
+
   async createNewProject() {
     const body = {
       name: this.form?.get('name')?.value,
     };
-
     this.projectsService.createProject(body).subscribe(
-      response =>  this.router.navigateByUrl('/projects') ,
-      error => alert('Error while creating the Project') 
+      response => {
+        this.projectCreated = true;
+        setTimeout(
+          () => this.createNewProjectAndRedirect(), 2000
+        )
+      },
+      error => alert('Error while creating the Project')
     );
   }
-
+  createNewProjectAndRedirect() {
+    this.projectCreated = false;
+    this.router.navigateByUrl('/projects');
+  }
 }

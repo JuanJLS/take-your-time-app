@@ -15,6 +15,7 @@ export class UserUpdateComponent implements OnInit {
     lastName: string = '';
     admin: boolean = false;
     email: any;
+    userUpdated: boolean = false;
 
     form: FormGroup | undefined;
 
@@ -25,7 +26,7 @@ export class UserUpdateComponent implements OnInit {
         this.form = this.fb.group({
             firstName: [this.firstName, [Validators.required]],
             lastName: [this.lastName, [Validators.required]],
-            admin: [this.admin, [Validators.required]],
+            admin: [false, [Validators.required]],
             email: [this.email, [Validators.required]]
         });
     }
@@ -41,6 +42,7 @@ export class UserUpdateComponent implements OnInit {
             this.email = params['email']
         })
         this.initForms();
+
     }
 
     updateUser() {
@@ -50,9 +52,25 @@ export class UserUpdateComponent implements OnInit {
             'lastName': this.form?.get('lastName')?.value,
             'admin': this.form?.get('admin')?.value,
             'email': this.form?.get('email')?.value
-        }).subscribe(
-            response => this.router.navigateByUrl('/users'),
-            error => alert('Error while updating the user')
+        }).subscribe(response => {
+            if (response) {
+                this.userUpdated = true;
+                setTimeout(
+                    () => this.updateAndNavigate(), 2000
+                )
+            }
+        },
+            error => {
+                return alert('Error while updating the user');
+            }
         );
+    }
+    setUpdatedToTrue() {
+        this.userUpdated = true;
+    }
+
+    updateAndNavigate() {
+        this.userUpdated = false;
+        this.router.navigateByUrl('/users');
     }
 }  

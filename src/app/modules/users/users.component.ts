@@ -27,9 +27,7 @@ export class UsersComponent implements OnInit {
       }
     );
   }
-
   navigateToUser(userId: string): void {
-    console.log(userId)
     this.router.navigateByUrl(`/users/${userId}`);
   }
 }

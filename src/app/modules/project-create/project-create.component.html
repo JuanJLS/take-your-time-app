@@ -1,8 +1,10 @@
+<div *ngIf="projectCreated" class="alert alert-primary col-md-6" role="alert">
+    Project Created Successfully!
+  </div>
 <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Create New Project</h4>
-
             <form class="login-form" *ngIf="form" [formGroup]="form">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-lg" formControlName="name"

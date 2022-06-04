@@ -36,4 +36,7 @@ export class UsersService {
     }
     return this.http.patch(`users/${id}`, body);
   }
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`users/${id}`);
+  }
 }

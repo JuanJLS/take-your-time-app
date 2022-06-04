@@ -37,9 +37,8 @@ export class ProjectComponent implements OnInit {
 
     deleteProject(projectId: number) {
         this.projectService.deleteProject(projectId).subscribe(response => {
-            if (response) {
-                alert('Project deleted successfuly')
-            }
+            alert('Project deleted successfuly');
+            this.router.navigate(['/projects']);
         },
             error => alert('Imposible to delete the Project')
         )
