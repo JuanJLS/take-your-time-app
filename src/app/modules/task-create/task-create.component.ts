@@ -12,6 +12,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskCreateComponent implements OnInit {
   form: FormGroup | undefined;
   projects: any | null;
+  tasktCreated: any = false;
 
   constructor(private fb: FormBuilder, private taskService: TaskService, private router: Router, private projectService: ProjectsService) { }
 
@@ -37,7 +38,12 @@ export class TaskCreateComponent implements OnInit {
     };
 
     this.taskService.createTask(body).subscribe(
-      response => this.router.navigateByUrl('/projects'),
+      response => {
+        this.tasktCreated = true;
+        setTimeout(
+          () => this.createNewProjectAndRedirect(), 2000
+        )
+      },
       error => alert('Error while creating the Task')
     );
   }
@@ -51,6 +57,10 @@ export class TaskCreateComponent implements OnInit {
         console.log(error.message)
       }
     )
+  }
+  createNewProjectAndRedirect() {
+    this.tasktCreated = false;
+    this.router.navigateByUrl('/projects')
   }
 
 }

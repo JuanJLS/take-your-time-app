@@ -14,6 +14,7 @@ export class ProjectUpdateComponent implements OnInit {
     projectName: string = '';
     form: FormGroup | undefined;
     updatedProjectName: string = '';
+    projectModified: boolean = false;
 
 
     constructor(private projectService: ProjectsService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) { }
@@ -41,10 +42,16 @@ export class ProjectUpdateComponent implements OnInit {
 
     updateProject() {
         this.projectService.updateProject({ 'id': this.projectId, 'name': this.form?.get('name')?.value }).subscribe(response => {
-            console.log(response);
-            this.router.navigateByUrl('/projects')
+            this.projectModified = true;
+            setTimeout(
+                () => this.createNewProjectAndRedirect(), 2000
+            )
         },
             error => alert('Error while creating the Task')
         );
+    }
+    createNewProjectAndRedirect() {
+        this.projectModified = false;
+        this.router.navigateByUrl('/projects');
     }
 }
