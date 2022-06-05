@@ -1,0 +1,38 @@
+<div *ngIf="userUpdated" class="alert alert-primary col-md-6" role="alert">
+  User Updated Successfully!
+</div>
+<div class="col-md-6 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Create New User</h4>
+
+      <form class="login-form" *ngIf="form" [formGroup]="form">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="firstName" placeholder="First Name">
+        </div>
+        <div class="error form-group" *ngIf="form.get('firstName')?.errors?.['firstName']">Name format is not correct
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="lastName" placeholder="lastName">
+        </div>
+        <div class="error form-group" *ngIf="form.get('lastName')?.errors?.['lastName']">Family name format is not
+          correct</div>
+        <div class="form-group">
+          <label class="tyt-checkbox-label" for="admin">Is Admin?</label>
+          <input type="checkbox" 
+          formControlName="admin"
+          [checked]=""
+          class="tyt-checkbox"
+          >
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="Email">
+        </div>
+        <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Email format not valid</div>
+
+        <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
+          (click)="updateUser()" [disabled]="!form.valid">Modify User</button>
+      </form>
+    </div>
+  </div>
+</div>

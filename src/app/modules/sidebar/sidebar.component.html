@@ -5,7 +5,6 @@
                 <div class="nav-profile-image">
                     <img src="assets/images/faces/face1.jpg" alt="profile">
                     <span class="login-status online"></span>
-                    <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
                     <span class="font-weight-bold mb-2">{{userName}}</span>
@@ -20,7 +19,7 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userIsAdmin" class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                 aria-controls="ui-basic">
                 <span class="menu-title">Projects</span>
@@ -32,26 +31,32 @@
                     <li class="nav-item"> <a class="nav-link" routerLink="projects">All Projects</a>
                     </li>
                     <li class="nav-item"> <a class="nav-link" routerLink="tasks/create">Create a Task</a></li>
+                    <button class="btn btn-block btn-lg btn-gradient-primary mt-4"
+                        routerLink="projects/create">Add
+                        Project</button>
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userIsAdmin" class="nav-item">
             <a class="nav-link" routerLink="users">
                 <span class="menu-title">Users</span>
                 <i class="mdi mdi-account-multiple menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item sidebar-actions" *ngIf="userIsAdmin">
-            <span class="nav-link">
-                <div>
-                    <button class="btn btn-block btn-lg btn-gradient-primary mt-4" routerLink="projects/create">Add
-                        Project</button>
-                </div>
-            </span>
+        <li class="nav-item sidebar-actions">
             <span>
                 <div>
-                    <button class="btn btn-block btn-lg btn-gradient-info mt-4" routerLink="users/create">Create
-                        User</button>
+                    <span class="nav-link"  *ngIf="userIsAdmin">
+                        <button class="btn btn-block btn-lg btn-gradient-info mt-4" routerLink="users/create">Create
+                            User</button>
+                    </span>
+                    <span class="nav-link">
+                        <div>
+                            <button class="btn btn-block btn-lg btn-gradient-dark mt-4"
+                                routerLink="worktime/create">Create
+                                Time </button>
+                        </div>
+                    </span>
                 </div>
             </span>
         </li>

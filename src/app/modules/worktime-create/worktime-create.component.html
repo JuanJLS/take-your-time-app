@@ -1,3 +1,6 @@
+<div *ngIf="workTimeCreated" class="alert alert-primary col-md-6" role="alert">
+    Time Logged Successfully!
+  </div>
 <div class="content-wrapper ">
     <div class="page-header">
         <div class="col-md-12">
@@ -32,7 +35,7 @@
                                 <input type="datetime-local" class="form-control" formControlName="endAt">
                             </div>
                             <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
-                                (click)="createNewWorkTime()" [disabled]="!form.valid">Add New Task</button>
+                                (click)="createNewWorkTime()" [disabled]="!form.valid">Log Time</button>
                         </form>
                     </div>
                 </div>

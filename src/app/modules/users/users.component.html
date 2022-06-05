@@ -7,12 +7,12 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr class="table-primary">
-                        <th class="cabecera">Project Name</th>
-                        <th class="cabecera">E-Mail</th>
+                        <th class="cabecera">User Name</th>
+                        <th class="cabecera">User E-Mail</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users">
+                    <tr class="navigate-to-user" *ngFor="let user of users" (click)="navigateToUser(user.id)">
                         <td>{{user.firstName}}</td>
                         <td>{{user.email}}</td>
                     </tr>

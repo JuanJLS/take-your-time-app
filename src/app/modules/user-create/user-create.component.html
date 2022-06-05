@@ -1,3 +1,6 @@
+<div *ngIf="userCreated" class="alert alert-primary col-md-6" role="alert">
+  User Created Successfully!
+</div>
 <div class="col-md-6 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -5,30 +8,46 @@
 
       <form class="login-form" *ngIf="form" [formGroup]="form">
         <div class="form-group">
-          <input type="text" class="form-control form-control-lg" formControlName="firstName"
-            placeholder="First Name">
+          <input type="text" class="form-control form-control-lg" formControlName="firstName" placeholder="First Name">
         </div>
-        <div class="error form-group" *ngIf="form.get('firstName')?.errors?.['firstName']">Name format is not correct </div>
+        <div class="error form-group" *ngIf="form.get('firstName')?.errors?.['firstName']">Name format is not correct
+        </div>
         <div class="form-group">
           <input type="text" class="form-control form-control-lg" formControlName="lastName" placeholder="lastName">
         </div>
-        <div class="error form-group" *ngIf="form.get('lastName')?.errors?.['lastName']">Family name format is not correct</div>
+        <div class="error form-group" *ngIf="form.get('lastName')?.errors?.['lastName']">Family name format is not
+          correct</div>
         <div class="form-group">
           <label for="admin">User is Admin?</label>
-          <input type="checkbox" formControlName="admin"> 
+          <input type="checkbox" formControlName="admin">
         </div>
         <div class="form-group">
           <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="Email">
         </div>
         <div class="error form-group" *ngIf="form.get('email')?.errors?.['email']">Email format not valid</div>
+
         <div class="form-group">
-          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control form-control-lg" placeholder="Password">
+          <label for="password">Password</label>
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+            class="form-control form-control-lg" placeholder="Password">
         </div>
+        <div class="error form-group" *ngIf="form.get('password')?.errors?.['password']">Please, insert a valid password
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-lg" id="confirmPassword"
+            placeholder="Confirm Password" formControlName="confirmPassword">
+        </div>
+        <div class="error form-group"
+          *ngIf="!passwordsAreEquals(form.get('password')?.value, form.get('confirmPassword')?.value)">Passwords
+          do not match</div>
+
         <div class="form-group">
           <label for="admin">Show Password</label>
-          <input type="checkbox" (input)="toggleShow()"> 
+          <input type="checkbox" (input)="toggleShow()">
         </div>
-        <div class="error form-group" *ngIf="form.get('password')?.errors?.['email']">Password must be at least 6 characters long</div>
+        <div class="error form-group" *ngIf="form.get('password')?.errors?.['email']">Password must be at least 6
+          characters long</div>
         <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
           (click)="createNewUser()" [disabled]="!form.valid">Create New User</button>
       </form>

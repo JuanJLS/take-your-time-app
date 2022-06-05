@@ -1,0 +1,70 @@
+<div class="col-md-10 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body" *ngIf="user">
+      <div class="table-responsive">
+        <h4 class="card-title">User Information</h4>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr class="table-primary">
+              <th class="cabecera">Name</th>
+              <th class="cabecera">Family Name</th>
+              <th class="cabecera">E-Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="user">
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="col-md-4 tyt-buttons">
+    <button class="btn btn-block btn-lg btn-success mt-6"
+      (click)="navigateToUpdateUser(user.id, user.firstName, user.lastName, user.admin, user.email)">Modify
+      User</button>
+    <button *ngIf="user?.WorkTimes =='' " class="btn btn-block btn-lg btn-danger mt-6"
+      (click)="deleteUser(user.id)">Delete User</button>
+  </div>
+</div>
+<div class="col-lg-10 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body" *ngIf="user">
+      <h4 class="card-title">{{ user.firstName}} {{user.lastName}} - Information</h4>
+      <div class="table-responsive">
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th> Task Name </th>
+              <th> Started At </th>
+              <th> Ended At </th>
+              <th> Progress </th>
+              <th> Total Hours </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let worktime of user.WorkTimes">
+              <td> {{worktime?.taskName?.name}} </td>
+              <td> {{worktime.startedAt | date: 'short'}} </td>
+              <td> {{worktime.endAt | date: 'short'}}</td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar"
+                    [style]="calculateWorktime(worktime.totalTime)" aria-valuenow="25" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td>{{worktime.totalTime | number: '1.1-2'}} H</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

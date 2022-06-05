@@ -14,6 +14,7 @@ export class WorktimeCreateComponent implements OnInit {
   projects: any;
   form: FormGroup | undefined;
   users: any;
+  workTimeCreated: boolean = false;
 
   constructor(
     private projectService: ProjectsService,
@@ -21,7 +22,7 @@ export class WorktimeCreateComponent implements OnInit {
     private worktimeService: WorktimeService,
     private router: Router,
     private usersService: UsersService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.initForms();
@@ -48,7 +49,12 @@ export class WorktimeCreateComponent implements OnInit {
     };
 
     this.worktimeService.createWortime(body).subscribe(
-      response => this.router.navigateByUrl('/projects'),
+      response => {
+        this.workTimeCreated = true;
+        setTimeout(
+          () => this.createAndNavigate(), 2000,
+        )
+      },
       error => alert('Error while creating the Task')
     );
   }
@@ -67,7 +73,7 @@ export class WorktimeCreateComponent implements OnInit {
     return this.form?.get('projectSelected')?.value.Tasks;
   }
 
-  getUsers(){
+  getUsers() {
     this.usersService.getUsers().subscribe(
       response => {
         this.users = response;
@@ -76,5 +82,9 @@ export class WorktimeCreateComponent implements OnInit {
         console.log(error.message)
       }
     )
+  }
+  createAndNavigate() {
+    this.workTimeCreated = false;
+    this.router.navigateByUrl('/projects');
   }
 }

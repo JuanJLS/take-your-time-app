@@ -30,3 +30,19 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
     transform: scale(1);
 }
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    font-family: "ubuntu-regular", sans-serif;
+}
+
+.show-password-label {
+    margin-right: 15px;
+    margin-bottom: 25px;
+    font-size: 0.8rem;
+    font-family: "ubuntu-regular", sans-serif;
+    font-weight: initial;
+    line-height: normal;
+}
+

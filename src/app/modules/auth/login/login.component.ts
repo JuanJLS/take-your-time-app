@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   form: FormGroup | undefined;
   showPassword: boolean = false;
-  passwordAreEquals: boolean = false;
+  errorMessageVisible: boolean = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
@@ -23,17 +23,14 @@ export class LoginComponent implements OnInit {
     if (this.form) { return; }
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    console.log(this.form);
   }
 
   login(): void {
     this.auth.login(this.form?.get('email')?.value, this.form?.get('password')?.value)
       .subscribe(
         response => {
-          console.log(response);
           const { user } = response;
           const { firstName, lastName } = user;
           const userName = firstName + ' ' + lastName;
@@ -41,8 +38,10 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl("/home");
         },
         error => {
-          //Use a modal
-          console.error(error)
+          setTimeout(
+            () => this.showErrorMessage(), 3000,
+            this.errorMessageVisible = true
+          )
         }
       )
   }
@@ -51,11 +50,7 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  passwordsAreEquals(password: any, confirmPassword: any): boolean {
-    if (password === confirmPassword) {
-      this.passwordAreEquals = true;
-      return true;
-    }
-    return false;
+  showErrorMessage() {
+    this.errorMessageVisible = false;
   }
 }

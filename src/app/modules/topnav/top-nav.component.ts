@@ -19,8 +19,11 @@ export class TopNavComponent implements OnInit {
   }
 
   logout(){
-    this.session.clearAuthToken();
-    this.router.navigateByUrl("/login");
+    const confirmLogOut = confirm("Do you want to Log-Out?")
+    if(confirmLogOut){
+      this.router.navigateByUrl("/login");
+      this.session.clearAuthToken();
+    }
   }
 
   getCurrentUser(){
