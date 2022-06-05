@@ -28,9 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
           this.sessionsService.clearAuthToken();
           this.router.navigateByUrl('/login');
         }
-
         return throwError(err);
-
       })
     );
   }

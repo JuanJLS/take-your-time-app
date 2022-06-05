@@ -13,7 +13,6 @@ export class SidebarComponent implements OnInit {
   constructor( private userService: UsersService) {}
   
   ngOnInit(): void {
-
     this.userService.getCurrentUser().subscribe(response => 
       this.userIsAdmin = response.admin);
     this.userService.getCurrentUser().subscribe(response => 

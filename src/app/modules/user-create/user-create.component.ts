@@ -66,7 +66,6 @@ export class UserCreateComponent implements OnInit {
 
   createAndNavigate() {
     this.userCreated = false;
-    this.router.navigateByUrl('/users')
-
+    this.router.navigateByUrl('/home')
   }
 }

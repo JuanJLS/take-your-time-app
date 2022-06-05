@@ -15,6 +15,9 @@ export class HomeComponent implements OnInit {
   tasks: any;
   task: any;
   users: any;
+  userIsAdmin: boolean = false;
+  user: any;
+  currentUserTasks: any[] | undefined;
 
   constructor(
     private usersService: UsersService,
@@ -25,9 +28,24 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.currentUserTasks = [];
     this.getProjects();
     this.getUsers();
-    this.getTasks();
+    this.userService.getCurrentUser().subscribe(response => { 
+      this.user = response,
+      this.userIsAdmin = response.admin;
+      this.getTasks();
+    });
+  }
+
+  filteredTasksByUser() {
+    this.tasks?.forEach((element: any) => {
+      element?.WorkTimes?.forEach((subElement: any) => {
+        if (subElement.userId === this.user?.id) {
+          this.currentUserTasks?.push(element);
+        }
+      });
+    });
   }
 
   getProjects() {
@@ -38,9 +56,10 @@ export class HomeComponent implements OnInit {
   getTasks() {
     this.tasksService.getTasks().subscribe(response => {
       this.tasks = response;
-      this.tasks && this.tasks.map((element: any) => {
+      this.tasks?.map((element: any) => {
         return Object.assign(element, { "timeCalculated": this.calculateWorktimeByTask(element) })
       });
+    this.filteredTasksByUser();
     })
   }
 
@@ -61,11 +80,10 @@ export class HomeComponent implements OnInit {
     task.WorkTimes.forEach((workTimes: any) => {
       calculatedTotalTime += workTimes.totalTime;
     });
-
     const calculatedTime = calculatedTotalTime * 100 / 160;
     return calculatedTime;
   }
-
+  
   navigateTo(element: string, elementId: number): void {
     this.router.navigateByUrl(`/${element}/${elementId}`);
   }

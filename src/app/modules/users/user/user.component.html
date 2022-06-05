@@ -28,7 +28,7 @@
     <button class="btn btn-block btn-lg btn-success mt-6"
       (click)="navigateToUpdateUser(user.id, user.firstName, user.lastName, user.admin, user.email)">Modify
       User</button>
-    <button *ngIf=" user && user.WorkTimes =='' " class="btn btn-block btn-lg btn-danger mt-6"
+    <button *ngIf="user?.WorkTimes =='' " class="btn btn-block btn-lg btn-danger mt-6"
       (click)="deleteUser(user.id)">Delete User</button>
   </div>
 </div>
@@ -50,7 +50,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let worktime of user.WorkTimes">
-              <td> {{worktime && worktime.taskName && worktime.taskName.name}} </td>
+              <td> {{worktime?.taskName?.name}} </td>
               <td> {{worktime.startedAt | date: 'short'}} </td>
               <td> {{worktime.endAt | date: 'short'}}</td>
               <td>
