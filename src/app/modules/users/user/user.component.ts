@@ -11,6 +11,7 @@ import { UsersService } from "src/app/services/user.service";
 export class UserComponent implements OnInit {
     userId: string = '';
     user: any;
+    userDeleted: boolean = false;
 
     constructor(private usersService: UsersService, private route: ActivatedRoute, private tasksService: TaskService, private router: Router) { }
 
@@ -55,11 +56,18 @@ export class UserComponent implements OnInit {
         const answer = window.confirm('Are you sure to delete this user?');
         if (answer) {
             this.usersService.deleteUser(userId).subscribe(response => {
-                alert('User deleted successfuly');
-                this.router.navigate(['/users']);
+                this.userDeleted = true;
+            setTimeout(
+                () => this.deleteUserAndRedirect(), 2000
+            )
+                
             },
                 error => alert('Imposible to delete this User')
             )
         }
+    }
+    deleteUserAndRedirect() {
+        this.userDeleted = false;
+        this.router.navigate(['/users']);
     }
 }  
